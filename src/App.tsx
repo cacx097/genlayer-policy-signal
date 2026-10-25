@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import TransactionPanel from "./TransactionPanel";
+import Portfolio from "./Portfolio";
 import { createClient } from "genlayer-js";
 import { studionet } from "genlayer-js/chains";
 import { Activity, ArrowUpRight, CheckCircle2, CircleAlert, Clock3, FileText, GitBranch, Globe2, Layers3, RefreshCw, Scale, SearchCheck, ShieldCheck, Sparkles, Workflow } from "lucide-react";
@@ -41,7 +42,8 @@ export default function App() {
     setErrors([]);
     try {
       // Read-only requests do not need a signing account or private key.
-      const client = createClient({ chain: studionet });
+      const chain = { ...studionet, rpcUrls: { default: { http: [window.location.origin + "/api/studionet"] } } };
+      const client = createClient({ chain });
       const read = async (address: typeof POLICY | typeof QUORUM, functionName: string) =>
         client.readContract({ address, functionName, args: [] });
       const tasks = await Promise.allSettled([
@@ -145,6 +147,7 @@ export default function App() {
           </>}
 
           <div className="contract-row"><div><div className="section-kicker">PUBLIC CONTRACT</div><code>{activeAddress}</code></div><div className="contract-actions"><LinkOut href={explorer(activeAddress)}>Explorer</LinkOut><LinkOut href={section === "policy" ? "https://github.com/cacx097/genlayer-policy-guard" : "https://github.com/cacx097/genlayer-source-quorum"}>소스 코드</LinkOut></div></div>
+          <Portfolio />
           <footer>PolicySignal · A GenLayer builder project candidate · No simulated or invented decisions <Clock3 size={13}/></footer>
         </div>
       </main>
