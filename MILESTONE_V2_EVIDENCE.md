@@ -28,5 +28,21 @@ v2 routes its read-only `gen_call` via `/api/studionet`:
 - Cloudflare Pages Function has **not yet been deployed or tested publicly**. The approved v1 remains untouched.
 - No new contract deployment, paid writes, award, or Portal Milestone submission.
 
-## Next permission-bounded action
-Publish v2 code on a separate GitHub branch, deploy a separate preview/new Pages target without changing the approved v1, verify public read-only proxy, report export, and compare screenshots. Submit one Builder Milestones contribution only after those tests pass. Public deployment, branch publication, and Portal submission have not been authorized in this turn.
+## Next step
+
+Submit **one** Milestones contribution through the existing approved PolicySignal Project, citing the v1/v2 diff, public v2 URL, independent v2 source branch, and successful public test evidence. Do not resubmit v1 Projects.
+
+
+## Public v2 release — verified 2026-10-25
+
+- Separate Cloudflare Pages project: https://policysignal-genlayer-v2.pages.dev/
+- v2 source branch: https://github.com/cacx097/genlayer-policy-signal/tree/milestone-v2
+- Approved v1 remains unchanged: https://policysignal-genlayer.pages.dev/ and GitHub `main`.
+- Live public Chrome test (`scripts/public_v2_smoke.mjs`): HTTP **200**, v2 portfolio interface rendered, PolicyGuard real on-chain read succeeded.
+- Public Pages read-only proxy: attempted write RPC returned **403**; GET returned **405**.
+- Real on-chain result saved to a browser-local snapshot; snapshot remained after a page reload.
+- JSON proof file was actually downloaded as `policysignal-policy-83a171bD.json`.
+- Mobile overflow test: **false**.
+- GenLayer rate limits were encountered during repeated local tests; this public verification passed. Avoid repeated requests solely for points.
+- No contract writes or paid consensus transactions were executed as part of this v2 release.
+- Milestones submission: not yet performed. Approval and points remain unconfirmed.
